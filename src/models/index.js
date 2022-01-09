@@ -9,7 +9,7 @@ const Stopss = require("./Stops")
 const Timetable = require("./Timetable");
 const Transport = require("./Transport");
 const Stops = require("./Stops");
-
+console.log("hello");
 
 Role.belongsToMany(User, { through: UserRole, foreignKey: "role_id" });
 User.belongsToMany(Role, { through: UserRole, foreignKey: "user_id" });
