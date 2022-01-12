@@ -5,13 +5,12 @@ const Role = require("./Role");
 const Reviews = require("./Reviews");
 const Routes = require("./Routes");
 const RoutesStops = require("./RoutesStops");
-const Stopss = require("./Stops")
 const Timetable = require("./Timetable");
 const Transport = require("./Transport");
 const Stops = require("./Stops");
-console.log("hello");
-
-Role.belongsToMany(User, { through: UserRole, foreignKey: "role_id" });
+//console.log("hello");
+//otherKey:"user_id"
+Role.belongsToMany(User, { through: UserRole, foreignKey: "role_id", });
 User.belongsToMany(Role, { through: UserRole, foreignKey: "user_id" });
 //Для хранения соответствия ключей пользователся и рооли будет создана отдельная таблица, 
 //название которой указывается в поле through объекта, передаваемого методу belongsToMany() вторым параметром.
@@ -25,6 +24,12 @@ Timetable.hasMany(Stops,{foreignKey:"stop_id"});
 Timetable.hasMany(Transport,{foreignKey:"transport_id"});
 Timetable.hasMany(Routes,{foreignKey:"route_id"});
 
-sequelize.sync({force:true}).then(()=>{
+// sequelize.sync({force:true}).then(()=>{
+//   console.log("Tables have been created");
+// }).catch(err=>console.log(err));
+sequelize.sync().then(()=>{
   console.log("Tables have been created");
 }).catch(err=>console.log(err));
+
+
+module.exports = sequelize;
