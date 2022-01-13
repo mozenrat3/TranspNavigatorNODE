@@ -1,8 +1,11 @@
 const express = require('express');
 const app = express();
+const passport = require('./src/passport');
+
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(passport.initialize());
 
 const userRouter = require('./src/routes/userRouter');
 const reviewRouter = require('./src/routes/reviewRouter');

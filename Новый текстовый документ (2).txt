@@ -1,0 +1,80 @@
+Review: 
+
+{
+     "user_id":1,
+     "route_id":1,
+     "comment":"comment1",
+        "rate": 1 ,
+        "dates": "2010-01-01 12:00:00"
+    }
+
+User:
+ {
+     "login":"log1",
+        "password": "hello1" ,
+        "email": "email1@mail.net"
+    }
+
+
+Stop:
+
+ {
+     "name":"name5",
+     "coords":"coords5"
+ }
+
+Transport:
+ {
+     "type":"bus"
+ }
+
+
+Routes:
+ {
+     "number":15,
+     "length":5,
+     "stop_start":1,
+     "stop_end":5
+ }
+
+
+Timetables:
+ {
+     "route_id":4,
+     "weekdays":2,
+     "arrival_time":"2011-01-01 12:00:00"
+ }
+
+
+
+
+(вход за админа)(http://localhost:3000/user/login)
+  {
+        "password": "password1" ,
+         "login": "login1234"
+    }
+
+(вход за юзера(http://localhost:3000/user/login)
+  {
+        "password": "password2" ,
+         "login": "login123456"
+    }
+(eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxMH0.m4LJcbC8GTCxpjf-ZG-6KULVNpin6kaRrBRl-tIXSmY)
+
+добавление(http://localhost:3000/user/signup)
+ {
+      "login": "login1234",
+        "password": "password1" ,
+        "email": "email9@mail.net",
+        "passwordConfirm":"password1"
+    }
+
+
+eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo5fQ.6J3TFzqeCeM-Tf7VSezuGz9CuunXnuJCUwy9vLpArvo
+
+
+//админ стоит на действиях с юзером(по типу вывода юзеров)
+
+
+
+ npm run test 

@@ -1,15 +1,13 @@
-const ForbiddenError = require("../errors/ForbiddenError");
-const constants = require("../constants");
+const authService = require('../services/authService');
+const ForbiddenError = require('../errors/ForbiddenError');
 
-module.exports = (req, res, next) => {
+module.exports = async (req, res, next) => {
 
-  if (req.session.role == constants.adminRoleNum) {
+    let isAdmin = await authService.isAdmin(req.user);
 
-    next();
-
-  } else {
-
-    next(new ForbiddenError("Not enough rights"));
-    
-  }
-};
+    if(isAdmin)
+        next();
+    else
+        res.status(403).json(new ForbiddenError("no access"));
+        
+}

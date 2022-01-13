@@ -42,7 +42,7 @@ changeStopById: async function(req, res, next) {
            let stopid = req.params.id;
             let data1 = {
                 name:req.body.name,
-                       coords:req.body.coords
+                coords:req.body.coords
             }      
            
             let stop = await stopService.changeStopById(data1,stopid);

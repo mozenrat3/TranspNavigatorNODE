@@ -1,9 +1,3 @@
-const UnauthorizedError = require("../errors/UnauthorizedError");
+const passport = require('../passport');
 
-module.exports = (req, res, next) => {
-  if (req.session.user) {
-    return next();
-  } else {
-    return next(new UnauthorizedError("Unauthorized"));
-  }
-};
+module.exports = passport.authenticate('jwt', {session: false})

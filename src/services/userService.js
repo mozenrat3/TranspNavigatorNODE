@@ -1,5 +1,5 @@
 let userRepository = require("../repository/userRepository");
-//для запуска репозиториев.(упрощает их использование)
+//для запуска репозиториев.(упрощает их использование)hgh
 module.exports = {
 
     getById : async function(userId) {

@@ -1,0 +1,11 @@
+-- Database: ForProject
+
+-- DROP DATABASE "ForProject";
+INSERT INTO routes(id,number,length,stop_start,stop_end,timetable_id) VALUES
+(1,5,1,1,7,1);
+
+INSERT INTO roles(id,name) VALUES
+(1,'User');
+
+INSERT INTO timetables(id,number,length,stop_start,stop_end,timetable_id) VALUES
+(1,5,1,1,7,1);

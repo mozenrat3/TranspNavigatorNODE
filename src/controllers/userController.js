@@ -56,7 +56,7 @@ module.exports = {
     deleteUserById: async function(req, res, next) {       
         try {  
             console.log("Controllers USED");   
-           // let userd = await userService.changeUserById(req.params.id);
+           // let userd = await userService.changeUserById(req.params.id);fd
            let userid = req.params.id;      
             let user = await userService.deleteUserById(userid);
             res.status(200).json(user);

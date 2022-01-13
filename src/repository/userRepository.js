@@ -50,13 +50,19 @@ module.exports = {
     deleteUserById : async function(userid) {
         console.log("REPOS USED");
         //let user2 = await sequelize.models.user.findByPk(userId);
-      //  let user2 = await sequelize.models.user.findByPk(userId);
+      //  let user2 = await sequelize.models.user.findByPk(userId)
        let user2 =  await sequelize.models.user.destroy({where:{id : userid}});
         if(!user2)
             throw(new NotFoundError('No such user'));
 
        return user2;
-    }
+    },
+
+    getByLogin : async function(login) {
+
+      return await sequelize.models.user.findOne({ where : { login : login}});
+
+  },
 
 
 }
