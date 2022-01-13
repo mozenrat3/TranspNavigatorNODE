@@ -8,18 +8,18 @@ const Timetable = sequelize.define("timetable", {
     primaryKey: true,
     allowNull: false
   },
-  transport_id: {
-    type: Sequelize.INTEGER,
-    allowNull: false
-  },
+  // transport_id: {
+  //   type: Sequelize.INTEGER,
+  //   allowNull: false
+  // },
   route_id: {
     type: Sequelize.INTEGER,
     allowNull: false
   },
-  stop_id: {
-    type: Sequelize.INTEGER,
-    allowNull: false
-  },
+  // stop_id: {
+  //   type: Sequelize.INTEGER,
+  //   allowNull: false
+  // },
   weekdays:{
     type: Sequelize.INTEGER,
     allowNull: false

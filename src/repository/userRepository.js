@@ -11,7 +11,7 @@ module.exports = {
 
        return user;
     },
-  
+  //?
     getAllUsers : async function(user) {
       //  console.log("REPOS USED");
         let user1 = await sequelize.models.user.findAll({raw:true});
@@ -42,7 +42,7 @@ module.exports = {
         //let user2 = await sequelize.models.user.findByPk(userId);
       //  let user2 = await sequelize.models.user.findByPk(userId);
        let user2 =  await sequelize.models.user.update(data1,{where:{id : userid}});
-        if(!user)
+        if(!user2)
             throw(new NotFoundError('No such user'));
 
        return user2;
@@ -52,7 +52,7 @@ module.exports = {
         //let user2 = await sequelize.models.user.findByPk(userId);
       //  let user2 = await sequelize.models.user.findByPk(userId);
        let user2 =  await sequelize.models.user.destroy({where:{id : userid}});
-        if(!user)
+        if(!user2)
             throw(new NotFoundError('No such user'));
 
        return user2;
