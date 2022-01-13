@@ -4,7 +4,6 @@ let NotFoundError = require("../errors/NotFoundError");
 module.exports = {
 
     getById : async function(userId) {
-        console.log("REPOS USED");
         let user = await sequelize.models.user.findByPk(userId);
         console.log('user!:  ' + user);
         if(!user)
@@ -13,42 +12,17 @@ module.exports = {
        return user;
     },
   
-    getAllUsers : async function(page) {
-        let result = null;
-        const usersOnPage = constants.usersOnPage;
-    
-        if(page){
-    
-          result = await User.findAll({offset: page * usersOnPage - usersOnPage, limit: usersOnPage});
-    
-        } else {
-    
-          result = await User.findAll();
-    
-        }
-    
-        for (let obj of result) {
-    
-          let roles = [];
-          let rolesObj = await obj.getRoles();
-    
-          rolesObj.forEach(element => {
-    
-            roles.push(element.dataValues.name); 
-    
-          });
-    
-          obj.dataValues.roles = roles;
-    
-        }
-    
-        return result;
+    getAllUsers : async function(user) {
+      //  console.log("REPOS USED");
+        let user1 = await sequelize.models.user.findAll({raw:true});
+      //  console.log('user!:  ' + user);
+        if(!user1)
+            throw(new NotFoundError('No such user'));
+
+       return user1;
     },
 
     createUser : async function(user) {
-        console.log("REPOS USED");
-
-
         let newuser = await sequelize.models.user.create(user);
         // let role = await sequelize.models.role.findOne(
         //     { where: {
@@ -63,6 +37,27 @@ module.exports = {
         //console.log("Role"+role);
        // newuser.addRole(role);
         return newuser;
+    },
+    changeUserById : async function(data1,userid) {
+        //let user2 = await sequelize.models.user.findByPk(userId);
+      //  let user2 = await sequelize.models.user.findByPk(userId);
+       let user2 =  await sequelize.models.user.update(data1,{where:{id : userid}});
+        if(!user)
+            throw(new NotFoundError('No such user'));
+
+       return user2;
+    },
+    deleteUserById : async function(userid) {
+        console.log("REPOS USED");
+        //let user2 = await sequelize.models.user.findByPk(userId);
+      //  let user2 = await sequelize.models.user.findByPk(userId);
+       let user2 =  await sequelize.models.user.destroy({where:{id : userid}});
+        if(!user)
+            throw(new NotFoundError('No such user'));
+
+       return user2;
     }
+
+
 }
 //репозитории отвечают за получение данных из бд. через запросы.

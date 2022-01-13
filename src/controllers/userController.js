@@ -3,10 +3,7 @@ const userService = require('../services/userService');
 module.exports = {
 
     getById: async function(req, res, next) {       
-        try {
-
-            console.log("Getbyid USED");
-            
+        try {           
             let user = await userService.getById(req.params.id);
             res.status(200).json(user);
         }
@@ -16,14 +13,7 @@ module.exports = {
     },
     getAllUsers: async function(req, res, next) {       
         try {
-
-            console.log("get all users USED");
-            let page = null;
-
-            if(req.query.page) {
-              page = req.query.page;
-            }
-            let user = await userService.getAllUsers(page);
+            let user = await userService.getAllUsers(req.params.id);
             res.status(200).json(user);
         }
         catch(error){
@@ -37,10 +27,38 @@ module.exports = {
                 login: req.body.login,
                 password: req.body.password,
                 email:req.body.email
-            }
-            console.log("post users USED");
-            
+            }       
             let user = await userService.createUser(data);
+            res.status(200).json(user);
+        }
+        catch(error){
+            next(error);
+        }
+    },
+    changeUserById: async function(req, res, next) {       
+        try {  
+           // let userd = await userService.changeUserById(req.params.id);
+           let userid = req.params.id;
+            let data1 = {
+                login: req.body.login,
+                password: req.body.password,
+                email:req.body.email
+            }      
+           
+            let user = await userService.changeUserById(data1,userid);
+            res.status(200).json(user);
+        }
+        catch(error){
+            next(error);
+        }
+    },
+
+    deleteUserById: async function(req, res, next) {       
+        try {  
+            console.log("Controllers USED");   
+           // let userd = await userService.changeUserById(req.params.id);
+           let userid = req.params.id;      
+            let user = await userService.deleteUserById(userid);
             res.status(200).json(user);
         }
         catch(error){
