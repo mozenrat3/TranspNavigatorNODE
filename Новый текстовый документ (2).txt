@@ -53,6 +53,8 @@ Timetables:
         "password": "password1" ,
          "login": "login1234"
     }
+//eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo5fQ.6J3TFzqeCeM-Tf7VSezuGz9CuunXnuJCUwy9vLpArvo
+
 
 (вход за юзера(http://localhost:3000/user/login)
   {
@@ -73,8 +75,12 @@ Timetables:
 eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjo5fQ.6J3TFzqeCeM-Tf7VSezuGz9CuunXnuJCUwy9vLpArvo
 
 
-//админ стоит на действиях с юзером(по типу вывода юзеров)
+//для юзера 2
+ {
+      "login": "login1234567",
+        "password": "password4" 
+    }
 
-
+eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxMX0.8WeBhffU-wMdOhE4zdS3KJx2XfCYVpAoPNwSjaRovn4
 
  npm run test 

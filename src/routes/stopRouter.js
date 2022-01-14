@@ -10,14 +10,15 @@ const validate = require('../middleware/validate');
 const { stopSchema } = require('../validation/stopValidation');
 const authorize = require('../middleware/isAuthorized');
 routerStop.use(authorize);
+const isAdmin = require('../middleware/isAdmin');
 //Маршрутизация определяет, как приложение отвечает на клиентский запрос к конкретному адресу (конечной точке),
 // которым является URI (или путь), и определенному методу запроса HTTP (GET, POST и т.д.).
 
 routerStop.get('/:id', stopController.getStopById);
 routerStop.get('/',stopController.getAllStops);
-routerStop.post('/',validate(stopSchema),stopController.createStop);
-routerStop.put('/:id',validate(stopSchema),stopController.changeStopById);
-routerStop.delete('/:id',stopController.deleteStopById);
+routerStop.post('/',isAdmin,validate(stopSchema),stopController.createStop);
+routerStop.put('/:id',isAdmin,validate(stopSchema),stopController.changeStopById);
+routerStop.delete('/:id',isAdmin,stopController.deleteStopById);
 
 
 

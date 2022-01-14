@@ -19,9 +19,9 @@ routerTransport.use(authorize);
 //впилить isAdmin на определенное действие можно добавив его в аргументы ниже
 routerTransport.get('/:id', transportController.getTransportById);
 routerTransport.get('/',transportController.getAllTransports);
-routerTransport.post('/',validate(transportSchema),transportController.createTransport);
-routerTransport.put('/:id',validate(transportSchema),transportController.changeTransportById);
-routerTransport.delete('/:id',transportController.deleteTransportById);
+routerTransport.post('/',isAdmin,validate(transportSchema),transportController.createTransport);
+routerTransport.put('/:id',isAdmin,validate(transportSchema),transportController.changeTransportById);
+routerTransport.delete('/:id',isAdmin,transportController.deleteTransportById);
 
 
 

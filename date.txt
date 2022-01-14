@@ -5,7 +5,14 @@ INSERT INTO routes(id,number,length,stop_start,stop_end,timetable_id) VALUES
 (1,5,1,1,7,1);
 
 INSERT INTO roles(id,name) VALUES
-(1,'User');
+(2,'Admin');
 
-INSERT INTO timetables(id,number,length,stop_start,stop_end,timetable_id) VALUES
-(1,5,1,1,7,1);
+INSERT INTO timetables(id,route_id,weekdays,arrival_time) VALUES
+(1,1,1,'2010-01-01 12:00:00');
+
+
+INSERT INTO users_roles(id,user_id,role_id) VALUES(9,9,2);
+
+DELETE  FROM timetables
+
+
