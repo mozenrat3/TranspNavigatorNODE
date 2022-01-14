@@ -3,7 +3,17 @@ const routeService = require('../services/routeService');
 //обработчик данных(типа валидации)
 module.exports = {
 
-getRouteById: async function(req, res, next) {       
+getRouteById: async function(req, res, next) {      
+     // #swagger.description = 'Get route by ID'
+        /* #swagger.parameters['id'] = {
+            description: 'Existing route ID',
+            type: 'object',
+            required: true
+        } */
+        /* #swagger.responses[200] = {
+            description: 'route object'
+            schema: { $ref: '#definitions/route' }
+        } */    
         try {           
             let route = await routeService.getRouteById(req.params.id);
             res.status(200).json(route);
@@ -13,7 +23,12 @@ getRouteById: async function(req, res, next) {
         }
     }
     ,
-getAllRoutes: async function(req, res, next) {       
+getAllRoutes: async function(req, res, next) { 
+     // #swagger.description = 'Get all routes'
+        /* #swagger.responses[200] = {
+            description: 'array of all routes'
+            schema: { $ref: '#definitions/routes' }
+        } */        
         try {
             let route1 = await routeService.getAllRoutes(req.params.id);
             res.status(200).json(route1);
@@ -23,7 +38,12 @@ getAllRoutes: async function(req, res, next) {
         }
     },
 
-createRoute: async function(req, res, next) {       
+createRoute: async function(req, res, next) { 
+    // #swagger.description = 'Create route'
+        /* #swagger.responses[200] = {
+            description: 'created route'
+            schema: { $ref: '#definitions/route' }
+        } */        
                 try {
                     let data = {
                         number:req.body.number,
@@ -38,7 +58,17 @@ createRoute: async function(req, res, next) {
                     next(error);
                 }
             },
-changeRouteById: async function(req, res, next) {       
+changeRouteById: async function(req, res, next) {  
+      // #swagger.description = 'Change route'
+            /* #swagger.parameters['id'] = {
+                description: 'Existing change route ID',
+                type: 'object',
+                required: true
+        } */
+        /* #swagger.responses[200] = {
+            description: 'change route'
+            schema: { $ref: '#definitions/route' }
+        } */      
         try {  
            // let userd = await userService.changeUserById(req.params.id);
            let routeid = req.params.id;
@@ -57,7 +87,17 @@ changeRouteById: async function(req, res, next) {
         }
     },
 
-deleteRouteById: async function(req, res, next) {       
+deleteRouteById: async function(req, res, next) { 
+     // #swagger.description = 'Delete route'
+         /* #swagger.parameters['id'] = {
+            description: 'Existing delete route ID',
+            type: 'object',
+            required: true
+        } */
+        /* #swagger.responses[200] = {
+            description: 'delete route'
+            schema: { $ref: '#definitions/route' }
+        } */          
         try {  
             console.log("Controllers USED");   
            // let userd = await userService.changeUserById(req.params.id);

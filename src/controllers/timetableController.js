@@ -4,6 +4,16 @@ const timetableService = require('../services/timetableService');
 module.exports = {
 
     getTimetableById: async function(req, res, next) {       
+         // #swagger.description = 'Get timetable by ID'
+        /* #swagger.parameters['id'] = {
+            description: 'Existing timetable ID',
+            type: 'object',
+            required: true
+        } */
+        /* #swagger.responses[200] = {
+            description: 'timetable object'
+            schema: { $ref: '#definitions/timetable' }
+        } */   
         try {           
             let tt = await timetableService.getTimetableById(req.params.id);
             res.status(200).json(tt);
@@ -13,7 +23,12 @@ module.exports = {
         }
     }
     ,
-    getAllTimetables: async function(req, res, next) {       
+    getAllTimetables: async function(req, res, next) {     
+         // #swagger.description = 'Get all timetables'
+        /* #swagger.responses[200] = {
+            description: 'array of all timetables'
+            schema: { $ref: '#definitions/timetables' }
+        } */    
         try {
             let tt1 = await timetableService.getAllTimetables(req.params.id);
             res.status(200).json(tt1);
@@ -23,7 +38,12 @@ module.exports = {
         }
     },
 
-    createTimetable: async function(req, res, next) {       
+    createTimetable: async function(req, res, next) {   
+        // #swagger.description = 'Create timetable'
+        /* #swagger.responses[200] = {
+            description: 'created timetable'
+            schema: { $ref: '#definitions/timetable' }
+        } */      
                 try {
                     let data = {
                         route_id:req.body.route_id,
@@ -37,7 +57,17 @@ module.exports = {
                     next(error);
                 }
             },
-            changeTimetableById: async function(req, res, next) {       
+            changeTimetableById: async function(req, res, next) { 
+                  // #swagger.description = 'Change timetable'
+            /* #swagger.parameters['id'] = {
+                description: 'Existing change timetable ID',
+                type: 'object',
+                required: true
+        } */
+        /* #swagger.responses[200] = {
+            description: 'change timetable'
+            schema: { $ref: '#definitions/timetable' }
+        } */       
         try {  
            // let userd = await userService.changeUserById(req.params.id);
            let ttid = req.params.id;
@@ -55,7 +85,17 @@ module.exports = {
         }
     },
 
-    deleteTimetableById: async function(req, res, next) {       
+    deleteTimetableById: async function(req, res, next) {  
+         // #swagger.description = 'Delete timetable'
+         /* #swagger.parameters['id'] = {
+            description: 'Existing delete timetable ID',
+            type: 'object',
+            required: true
+        } */
+        /* #swagger.responses[200] = {
+            description: 'delete timetable'
+            schema: { $ref: '#definitions/timetable' }
+        } */         
         try {  
             console.log("Controllers USED");   
            // let userd = await userService.changeUserById(req.params.id);
