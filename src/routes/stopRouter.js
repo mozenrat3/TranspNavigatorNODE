@@ -14,11 +14,26 @@ const isAdmin = require('../middleware/isAdmin');
 //Маршрутизация определяет, как приложение отвечает на клиентский запрос к конкретному адресу (конечной точке),
 // которым является URI (или путь), и определенному методу запроса HTTP (GET, POST и т.д.).
 
-routerStop.get('/:id', stopController.getStopById);
-routerStop.get('/',stopController.getAllStops);
-routerStop.post('/',isAdmin,validate(stopSchema),stopController.createStop);
-routerStop.put('/:id',isAdmin,validate(stopSchema),stopController.changeStopById);
-routerStop.delete('/:id',isAdmin,stopController.deleteStopById);
+routerStop.get('/:id', stopController.getStopById/*
+#swagger.tags = ['Stops']
+#swagger.security = [{ "bearerAuth": [] }]
+*/);
+routerStop.get('/',stopController.getAllStops/*
+#swagger.tags = ['Stops']
+#swagger.security = [{ "bearerAuth": [] }]
+*/);
+routerStop.post('/',isAdmin,validate(stopSchema),stopController.createStop/*
+#swagger.tags = ['Stops']
+#swagger.security = [{ "bearerAuth": [] }]
+*/);
+routerStop.put('/:id',isAdmin,validate(stopSchema),stopController.changeStopById/*
+#swagger.tags = ['Stops']
+#swagger.security = [{ "bearerAuth": [] }]
+*/);
+routerStop.delete('/:id',isAdmin,stopController.deleteStopById/*
+#swagger.tags = ['Stops']
+#swagger.security = [{ "bearerAuth": [] }]
+*/);
 
 
 

@@ -14,11 +14,26 @@ const isAdmin = require('../middleware/isAdmin');
 //Маршрутизация определяет, как приложение отвечает на клиентский запрос к конкретному адресу (конечной точке),
 // которым является URI (или путь), и определенному методу запроса HTTP (GET, POST и т.д.).
 
-routerReview.get('/:id', reviewController.getReviewById);
-routerReview.get('/',reviewController.getAllReviews);
-routerReview.post('/',isAdmin, validate(reviewSchema), reviewController.createReview);
-routerReview.put('/:id', isAdmin,validate(reviewSchema), reviewController.changeReviewById);
-routerReview.delete('/:id',isAdmin,reviewController.deleteReviewById);
+routerReview.get('/:id', reviewController.getReviewById /*
+#swagger.tags = ['Reviews']
+#swagger.security = [{ "bearerAuth": [] }]
+*/);
+routerReview.get('/',reviewController.getAllReviews /*
+#swagger.tags = ['Reviews']
+#swagger.security = [{ "bearerAuth": [] }]
+*/);
+routerReview.post('/',isAdmin, validate(reviewSchema), reviewController.createReview /*
+#swagger.tags = ['Reviews']
+#swagger.security = [{ "bearerAuth": [] }]
+*/);
+routerReview.put('/:id', isAdmin,validate(reviewSchema), reviewController.changeReviewById /*
+#swagger.tags = ['Reviews']
+#swagger.security = [{ "bearerAuth": [] }]
+*/);
+routerReview.delete('/:id',isAdmin,reviewController.deleteReviewById /*
+#swagger.tags = ['Reviews']
+#swagger.security = [{ "bearerAuth": [] }]
+*/);
 
 
 

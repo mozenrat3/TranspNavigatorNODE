@@ -15,11 +15,26 @@ const isAdmin = require('../middleware/isAdmin');
 
 
 
-routerRoute.get('/:id', routeController.getRouteById);
-routerRoute.get('/',routeController.getAllRoutes);
-routerRoute.post('/',isAdmin,validate(routeSchema),routeController.createRoute);
-routerRoute.put('/:id',isAdmin,validate(routeSchema),routeController.changeRouteById);
-routerRoute.delete('/:id',isAdmin,routeController.deleteRouteById);
+routerRoute.get('/:id', routeController.getRouteById/*
+#swagger.tags = ['Routes']
+#swagger.security = [{ "bearerAuth": [] }]
+*/);
+routerRoute.get('/',routeController.getAllRoutes/*
+#swagger.tags = ['Routes']
+#swagger.security = [{ "bearerAuth": [] }]
+*/);
+routerRoute.post('/',isAdmin,validate(routeSchema),routeController.createRoute/*
+#swagger.tags = ['Routes']
+#swagger.security = [{ "bearerAuth": [] }]
+*/);
+routerRoute.put('/:id',isAdmin,validate(routeSchema),routeController.changeRouteById/*
+#swagger.tags = ['Routes']
+#swagger.security = [{ "bearerAuth": [] }]
+*/);
+routerRoute.delete('/:id',isAdmin,routeController.deleteRouteById/*
+#swagger.tags = ['Routes']
+#swagger.security = [{ "bearerAuth": [] }]
+*/);
 
 
 

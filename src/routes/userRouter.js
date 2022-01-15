@@ -19,17 +19,33 @@ const isAdmin = require('../middleware/isAdmin');
 // которым является URI (или путь), и определенному методу запроса HTTP (GET, POST и т.д.).gf
 
 //AUTH
-router.post('/signup', validate(signupSchema) , userController.createUser);
-router.post('/login', validate(loginSchema), authController.logIn);
+router.post('/signup', validate(signupSchema) , userController.createUser /*
+#swagger.tags = ['Users']
+*/);
+router.post('/login', validate(loginSchema), authController.logIn /*
+#swagger.tags = ['Users']
+*/);
 
 
 router.use(authorize);
 
-router.get('/:id', isAdmin, userController.getById);
-router.get('/', isAdmin, userController.getAllUsers);
+router.get('/:id', isAdmin, userController.getById /*
+#swagger.tags = ['Users']
+#swagger.security = [{ "bearerAuth": [] }]
+*/);
+router.get('/', isAdmin, userController.getAllUsers /*
+#swagger.tags = ['Users']
+#swagger.security = [{ "bearerAuth": [] }]
+*/);
 
-router.put('/:id', isAdmin, validate(userSchema), userController.changeUserById);
-router.delete('/:id', isAdmin, userController.deleteUserById);
+router.put('/:id', isAdmin, validate(userSchema), userController.changeUserById /*
+#swagger.tags = ['Users']
+#swagger.security = [{ "bearerAuth": [] }]
+*/);
+router.delete('/:id', isAdmin, userController.deleteUserById /*
+#swagger.tags = ['Users']
+#swagger.security = [{ "bearerAuth": [] }]
+*/);
 
 
 //router.post('/signup', userValidator, validate, userController.addUser);

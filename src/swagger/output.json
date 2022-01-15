@@ -1,73 +1,83 @@
 {
-  "swagger": "2.0",
+  "openapi": "3.0.0",
   "info": {
     "title": "My API",
     "description": "My All API",
     "version": "1.0.0"
   },
-  "host": "localhost:3000",
-  "basePath": "/",
-  "schemes": [
-    "http"
-  ],
-  "securityDefinitions": {
-    "bearerAuth": {
-        "type": "http",
-        "scheme": "bearer",
-        "bearerFormat": "JWT"
+  "servers": [
+    {
+      "url": "http://localhost:3000/"
     }
-}, 
+  ],
+  "tags": [
+    {
+      "name": "Users",
+      "description": "Users API"
+    },
+    {
+      "name": "Reviews",
+      "description": "Reviews API"
+    },
+    {
+      "name": "Routes",
+      "description": "Routes API"
+    },
+    {
+      "name": "Stops",
+      "description": "Stops API"
+    },
+    {
+      "name": "Transports",
+      "description": "Transports API"
+    },
+    {
+      "name": "Timetables",
+      "description": "Timetables API"
+    }
+  ],
   "paths": {
     "/user/signup": {
       "post": {
-        "description": "Create user",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "login": {
-                  "example": "any"
-                },
-                "password": {
-                  "example": "any"
-                },
-                "email": {
-                  "example": "any"
-                }
-              }
-            }
-          }
+        "tags": [
+          "Users"
         ],
+        "description": "",
+        "parameters": [],
         "responses": {
           "200": {
             "description": "OK"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "login": {
+                    "example": "any"
+                  },
+                  "password": {
+                    "example": "any"
+                  },
+                  "email": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
           }
         }
       }
     },
     "/user/login": {
       "post": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "login": {
-                  "example": "any"
-                },
-                "password": {
-                  "example": "any"
-                }
-              }
-            }
-          }
+        "tags": [
+          "Users"
         ],
+        "description": "",
+        "parameters": [],
         "responses": {
           "200": {
             "description": "OK"
@@ -75,56 +85,39 @@
           "400": {
             "description": "Bad Request"
           }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "login": {
+                    "example": "any"
+                  },
+                  "password": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
         }
       }
     },
     "/user/{id}": {
       "get": {
-        "description": "Get user by ID",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "object",
-            "description": "Existing user ID"
-          }
+        "tags": [
+          "Users"
         ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "403": {
-            "description": "Forbidden"
-          }
-        }
-      },
-      "put": {
-        "description": "Change user",
+        "description": "",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "object",
-            "description": "Existing change user ID"
-          },
-          {
-            "name": "body",
-            "in": "body",
             "schema": {
-              "type": "object",
-              "properties": {
-                "login": {
-                  "example": "any"
-                },
-                "password": {
-                  "example": "any"
-                },
-                "email": {
-                  "example": "any"
-                }
-              }
+              "type": "string"
             }
           }
         ],
@@ -135,17 +128,26 @@
           "403": {
             "description": "Forbidden"
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       },
-      "delete": {
-        "description": "Delete user",
+      "put": {
+        "tags": [
+          "Users"
+        ],
+        "description": "",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "object",
-            "description": "Existing delete user ID"
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -155,12 +157,69 @@
           "403": {
             "description": "Forbidden"
           }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "login": {
+                    "example": "any"
+                  },
+                  "password": {
+                    "example": "any"
+                  },
+                  "email": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
         }
+      },
+      "delete": {
+        "tags": [
+          "Users"
+        ],
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/user/": {
       "get": {
-        "description": "Get all users",
+        "tags": [
+          "Users"
+        ],
+        "description": "",
         "parameters": [],
         "responses": {
           "200": {
@@ -169,59 +228,53 @@
           "403": {
             "description": "Forbidden"
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/reviews/{id}": {
       "get": {
-        "description": "Get review by ID",
+        "tags": [
+          "Reviews"
+        ],
+        "description": "",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "object",
-            "description": "Existing review ID"
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       },
       "put": {
-        "description": "Change review",
+        "tags": [
+          "Reviews"
+        ],
+        "description": "",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "object",
-            "description": "Existing change review ID"
-          },
-          {
-            "name": "body",
-            "in": "body",
             "schema": {
-              "type": "object",
-              "properties": {
-                "user_id": {
-                  "example": "any"
-                },
-                "route_id": {
-                  "example": "any"
-                },
-                "comment": {
-                  "example": "any"
-                },
-                "rate": {
-                  "example": "any"
-                },
-                "dates": {
-                  "example": "any"
-                }
-              }
+              "type": "string"
             }
           }
         ],
@@ -232,17 +285,52 @@
           "403": {
             "description": "Forbidden"
           }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "user_id": {
+                    "example": "any"
+                  },
+                  "route_id": {
+                    "example": "any"
+                  },
+                  "comment": {
+                    "example": "any"
+                  },
+                  "rate": {
+                    "example": "any"
+                  },
+                  "dates": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
         }
       },
       "delete": {
-        "description": "Delete review",
+        "tags": [
+          "Reviews"
+        ],
+        "description": "",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "object",
-            "description": "Existing delete review ID"
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -252,98 +340,118 @@
           "403": {
             "description": "Forbidden"
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/reviews/": {
       "get": {
-        "description": "Get all reviews",
+        "tags": [
+          "Reviews"
+        ],
+        "description": "",
         "parameters": [],
         "responses": {
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       },
       "post": {
-        "description": "Create review",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "user_id": {
-                  "example": "any"
-                },
-                "route_id": {
-                  "example": "any"
-                },
-                "comment": {
-                  "example": "any"
-                },
-                "rate": {
-                  "example": "any"
-                },
-                "dates": {
-                  "example": "any"
-                }
-              }
-            }
-          }
+        "tags": [
+          "Reviews"
         ],
+        "description": "",
+        "parameters": [],
         "responses": {
           "200": {
             "description": "OK"
           },
           "403": {
             "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "user_id": {
+                    "example": "any"
+                  },
+                  "route_id": {
+                    "example": "any"
+                  },
+                  "comment": {
+                    "example": "any"
+                  },
+                  "rate": {
+                    "example": "any"
+                  },
+                  "dates": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
           }
         }
       }
     },
     "/stops/{id}": {
       "get": {
-        "description": "Get stop by ID",
+        "tags": [
+          "Stops"
+        ],
+        "description": "",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "object",
-            "description": "Existing stop ID"
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       },
       "put": {
-        "description": "Change stop",
+        "tags": [
+          "Stops"
+        ],
+        "description": "",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "object",
-            "description": "Existing change stop ID"
-          },
-          {
-            "name": "body",
-            "in": "body",
             "schema": {
-              "type": "object",
-              "properties": {
-                "name": {
-                  "example": "any"
-                },
-                "coords": {
-                  "example": "any"
-                }
-              }
+              "type": "string"
             }
           }
         ],
@@ -354,17 +462,43 @@
           "403": {
             "description": "Forbidden"
           }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "example": "any"
+                  },
+                  "coords": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
         }
       },
       "delete": {
-        "description": "Delete stop",
+        "tags": [
+          "Stops"
+        ],
+        "description": "",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "object",
-            "description": "Existing delete stop ID"
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -374,86 +508,109 @@
           "403": {
             "description": "Forbidden"
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/stops/": {
       "get": {
-        "description": "Get all stops",
+        "tags": [
+          "Stops"
+        ],
+        "description": "",
         "parameters": [],
         "responses": {
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       },
       "post": {
-        "description": "Create stop",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "name": {
-                  "example": "any"
-                },
-                "coords": {
-                  "example": "any"
-                }
-              }
-            }
-          }
+        "tags": [
+          "Stops"
         ],
+        "description": "",
+        "parameters": [],
         "responses": {
           "200": {
             "description": "OK"
           },
           "403": {
             "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "example": "any"
+                  },
+                  "coords": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
           }
         }
       }
     },
     "/transports/{id}": {
       "get": {
-        "description": "Get transport by ID",
+        "tags": [
+          "Transports"
+        ],
+        "description": "",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "object",
-            "description": "Existing transport ID"
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       },
       "put": {
-        "description": "Change transport",
+        "tags": [
+          "Transports"
+        ],
+        "description": "",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "object",
-            "description": "Existing change transport ID"
-          },
-          {
-            "name": "body",
-            "in": "body",
             "schema": {
-              "type": "object",
-              "properties": {
-                "type": {
-                  "example": "any"
-                }
-              }
+              "type": "string"
             }
           }
         ],
@@ -464,17 +621,40 @@
           "403": {
             "description": "Forbidden"
           }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
         }
       },
       "delete": {
-        "description": "Delete transport",
+        "tags": [
+          "Transports"
+        ],
+        "description": "",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "object",
-            "description": "Existing delete transport ID"
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -484,92 +664,106 @@
           "403": {
             "description": "Forbidden"
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/transports/": {
       "get": {
-        "description": "Get all transports",
+        "tags": [
+          "Transports"
+        ],
+        "description": "",
         "parameters": [],
         "responses": {
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       },
       "post": {
-        "description": "Create transport",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "type": {
-                  "example": "any"
-                }
-              }
-            }
-          }
+        "tags": [
+          "Transports"
         ],
+        "description": "",
+        "parameters": [],
         "responses": {
           "200": {
             "description": "OK"
           },
           "403": {
             "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
           }
         }
       }
     },
     "/routes/{id}": {
       "get": {
-        "description": "Get route by ID",
+        "tags": [
+          "Routes"
+        ],
+        "description": "",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "object",
-            "description": "Existing route ID"
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       },
       "put": {
-        "description": "Change route",
+        "tags": [
+          "Routes"
+        ],
+        "description": "",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "object",
-            "description": "Existing change route ID"
-          },
-          {
-            "name": "body",
-            "in": "body",
             "schema": {
-              "type": "object",
-              "properties": {
-                "number": {
-                  "example": "any"
-                },
-                "length": {
-                  "example": "any"
-                },
-                "stop_start": {
-                  "example": "any"
-                },
-                "stop_end": {
-                  "example": "any"
-                }
-              }
+              "type": "string"
             }
           }
         ],
@@ -580,17 +774,49 @@
           "403": {
             "description": "Forbidden"
           }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "number": {
+                    "example": "any"
+                  },
+                  "length": {
+                    "example": "any"
+                  },
+                  "stop_start": {
+                    "example": "any"
+                  },
+                  "stop_end": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
         }
       },
       "delete": {
-        "description": "Delete route",
+        "tags": [
+          "Routes"
+        ],
+        "description": "",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "object",
-            "description": "Existing delete route ID"
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -600,98 +826,115 @@
           "403": {
             "description": "Forbidden"
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/routes/": {
       "get": {
-        "description": "Get all routes",
+        "tags": [
+          "Routes"
+        ],
+        "description": "",
         "parameters": [],
         "responses": {
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       },
       "post": {
-        "description": "Create route",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "number": {
-                  "example": "any"
-                },
-                "length": {
-                  "example": "any"
-                },
-                "stop_start": {
-                  "example": "any"
-                },
-                "stop_end": {
-                  "example": "any"
-                }
-              }
-            }
-          }
+        "tags": [
+          "Routes"
         ],
+        "description": "",
+        "parameters": [],
         "responses": {
           "200": {
             "description": "OK"
           },
           "403": {
             "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "number": {
+                    "example": "any"
+                  },
+                  "length": {
+                    "example": "any"
+                  },
+                  "stop_start": {
+                    "example": "any"
+                  },
+                  "stop_end": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
           }
         }
       }
     },
     "/timetables/{id}": {
       "get": {
-        "description": "Get timetable by ID",
+        "tags": [
+          "Timetables"
+        ],
+        "description": "",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "object",
-            "description": "Existing timetable ID"
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       },
       "put": {
-        "description": "Change timetable",
+        "tags": [
+          "Timetables"
+        ],
+        "description": "",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "object",
-            "description": "Existing change timetable ID"
-          },
-          {
-            "name": "body",
-            "in": "body",
             "schema": {
-              "type": "object",
-              "properties": {
-                "route_id": {
-                  "example": "any"
-                },
-                "weekdays": {
-                  "example": "any"
-                },
-                "arrival_time": {
-                  "example": "any"
-                }
-              }
+              "type": "string"
             }
           }
         ],
@@ -702,17 +945,46 @@
           "403": {
             "description": "Forbidden"
           }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "route_id": {
+                    "example": "any"
+                  },
+                  "weekdays": {
+                    "example": "any"
+                  },
+                  "arrival_time": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
         }
       },
       "delete": {
-        "description": "Delete timetable",
+        "tags": [
+          "Timetables"
+        ],
+        "description": "",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "type": "object",
-            "description": "Existing delete timetable ID"
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -722,41 +994,38 @@
           "403": {
             "description": "Forbidden"
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       }
     },
     "/timetables/": {
       "get": {
-        "description": "Get all timetables",
+        "tags": [
+          "Timetables"
+        ],
+        "description": "",
         "parameters": [],
         "responses": {
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
       },
       "post": {
-        "description": "Create timetable",
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "route_id": {
-                  "example": "any"
-                },
-                "weekdays": {
-                  "example": "any"
-                },
-                "arrival_time": {
-                  "example": "any"
-                }
-              }
-            }
-          }
+        "tags": [
+          "Timetables"
         ],
+        "description": "",
+        "parameters": [],
         "responses": {
           "200": {
             "description": "OK"
@@ -764,156 +1033,41 @@
           "403": {
             "description": "Forbidden"
           }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "route_id": {
+                    "example": "any"
+                  },
+                  "weekdays": {
+                    "example": "any"
+                  },
+                  "arrival_time": {
+                    "example": "any"
+                  }
+                }
+              }
+            }
+          }
         }
       }
     }
   },
-  "definitions": {
-    "user": {
-      "type": "object",
-      "properties": {
-        "login": {
-          "type": "string",
-          "example": "test"
-        },
-        "password": {
-          "type": "string",
-          "example": "test"
-        },
-        "email": {
-          "type": "string",
-          "example": "test@mail.net"
-        },
-        "passwordConfirm": {
-          "type": "string",
-          "example": "testpassword"
-        }
-      }
-    },
-    "users": {
-      "type": "array",
-      "items": {
-        "$ref": "#/definitions/user"
-      }
-    },
-    "review": {
-      "type": "object",
-      "properties": {
-        "user_id": {
-          "type": "number",
-          "example": 3
-        },
-        "route_id": {
-          "type": "number",
-          "example": 1
-        },
-        "comment": {
-          "type": "string",
-          "example": "testcom1"
-        },
-        "rate": {
-          "type": "number",
-          "example": 3
-        },
-        "dates": {
-          "type": "string",
-          "example": "2011-01-01 12:00:00"
-        }
-      }
-    },
-    "reviews": {
-      "type": "array",
-      "items": {
-        "type": "array",
-        "items": {}
-      }
-    },
-    "route": {
-      "type": "object",
-      "properties": {
-        "number": {
-          "type": "number",
-          "example": 120
-        },
-        "length": {
-          "type": "number",
-          "example": 11
-        },
-        "stop_start": {
-          "type": "number",
-          "example": 1
-        },
-        "stop_end": {
-          "type": "number",
-          "example": 5
-        }
-      }
-    },
-    "routes": {
-      "type": "array",
-      "items": {
-        "type": "array",
-        "items": {}
-      }
-    },
-    "stop": {
-      "type": "object",
-      "properties": {
-        "name": {
-          "type": "string",
-          "example": "testname1"
-        },
-        "coords": {
-          "type": "string",
-          "example": "testcoords1"
-        }
-      }
-    },
-    "stops": {
-      "type": "array",
-      "items": {
-        "type": "array",
-        "items": {}
-      }
-    },
-    "transport": {
-      "type": "object",
-      "properties": {
-        "type": {
-          "type": "string",
-          "example": "testtram1"
-        }
-      }
-    },
-    "transports": {
-      "type": "array",
-      "items": {
-        "type": "array",
-        "items": {}
-      }
-    },
-    "timetable": {
-      "type": "object",
-      "properties": {
-        "route_id": {
-          "type": "number",
-          "example": 1
-        },
-        "weekdays": {
-          "type": "number",
-          "example": 3
-        },
-        "arrival_time": {
-          "type": "string",
-          "example": "2011-01-01 12:00:00"
-        }
-      }
-    },
-    "timetables": {
-      "type": "array",
-      "items": {
-        "type": "array",
-        "items": {}
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
       }
     }
   }
