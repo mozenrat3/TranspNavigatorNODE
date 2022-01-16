@@ -6,7 +6,9 @@ const userService = require('./services/userService');
 
 let options = {
     jwtFromRequest : ExtractJwt.fromAuthHeaderAsBearerToken(),//хранится в куки(берем jwt из берер)
-    secretOrKey : 'secret'
+	//Функция, которая принимает запрос в качестве единственного параметра и возвращает либо JWT в виде строки, либо null.
+    secretOrKey : 'secret'//secretOrKey — это строка или буфер, содержащий секретный (симметричный) или закодированный в PEM 
+	//открытый ключ (асимметричный) для проверки подписи токена.
 }
 
 passport.use(new JWTStrategy(options, function(jwt_payload, done) {//декодируем токен

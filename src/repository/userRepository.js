@@ -51,10 +51,13 @@ module.exports = {
         console.log("REPOS USED");
         //let user2 = await sequelize.models.user.findByPk(userId);
       //  let user2 = await sequelize.models.user.findByPk(userId)
-       let user2 =  await sequelize.models.user.destroy({where:{id : userid}});
+
+      // let user2 =  await sequelize.models.user.destroy({where:{id : userid}});
+
+      let user2 =  await this.getById(userid);
         if(!user2)
             throw(new NotFoundError('No such user'));
-
+        await user2.destroy();
        return user2;
     },
 

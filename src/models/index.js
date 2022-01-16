@@ -29,7 +29,7 @@ Timetable.hasMany(Routes,{foreignKey:"timetable_id"});
 //   console.log("Tables have been created");
 // }).catch(err=>console.log(err));
 sequelize.sync().then(()=>{
-  console.log("Tables have been created");
+  //console.log("Tables have been created");
 }).catch(err=>console.log(err));
 
 

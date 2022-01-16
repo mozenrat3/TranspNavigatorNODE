@@ -3,7 +3,7 @@ const app = express();
 const passport = require('./src/passport');
 const fs = require('fs');
 
-
+const logs = require('./src/middleware/httpLog');
 
 const swaggerUi = require('swagger-ui-express');
 //const swaggerFile = JSON.parse(fs.readFileSync('./src/swagger/output.json'))
@@ -11,6 +11,8 @@ const swaggerFile = require('./src/swagger/output.json');
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(passport.initialize());
+
+app.use(logs);
 
 const userRouter = require('./src/routes/userRouter');
 const reviewRouter = require('./src/routes/reviewRouter');
